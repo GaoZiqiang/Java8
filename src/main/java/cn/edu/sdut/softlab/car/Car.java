@@ -5,6 +5,9 @@
  */
 package cn.edu.sdut.softlab.car;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author gaoziqiang
@@ -68,5 +71,26 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" + "name=" + name + ", color=" + color + ", weight=" + weight + ", speed=" + speed + '}';
+    }
+
+    //garage
+    public static final List<Car> garage = Arrays.asList(
+            new Car("奔驰", "black", 500, 1000, 300),
+            new Car("奥迪", "wihte", 400, 900, 100),
+            new Car("宝马", "red", 600, 1100, 200),
+            new Car("大众", "blue", 300, 700, 50),
+            new Car("吉普", "black", 450, 8000, 80)
+    );
+
+    //谓词筛选
+
+    /**
+     *
+     * @return
+     */
+    public static boolean isHighEndCar() {
+
+        return garage.stream().allMatch(car -> car.getPrice() > 400);
+
     }
 }
