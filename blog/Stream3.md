@@ -16,6 +16,7 @@
  - 筛选条件：car.getPrice() > 300即可；
 
 　　这里，filter()方法是Stream的内部迭代方法，而car.getPrice() > 300是该filter()方法的一个内部参数。
+
 　　示例代码：
 ```
  List<Car> highPriceCar;
