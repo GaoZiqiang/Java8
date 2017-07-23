@@ -66,7 +66,7 @@ private static boolean isLowPriceCar(){
 
 　　**实现原理：根据流所生成元素的hashCode和equals方法实现。**
 
-　　代码示例：
+　　**代码示例:**
 　　
 
 ```
@@ -81,7 +81,7 @@ List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
 
 　　流支持limit(n)方法，该方法会返回一个给定长度的流，该方法的参数是一个整数n，该参数即为限定的长度。筛选顺序是从左到右，从前往后。
 
-　　代码示例：
+　　**代码示例：**
 　　
 
 ```
@@ -99,7 +99,7 @@ List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
 
 　　skip(n)方法将前n个元素筛选掉，如果流中不足n个元素，则返回一个空流。
 
-　　代码示例：
+　　**代码示例：**
 　　
 
 ```
