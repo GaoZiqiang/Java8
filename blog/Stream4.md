@@ -3,6 +3,7 @@
   流的创建方法有很多，除了我们经常用的使用集合创建流，还可以通过值、数组、文件、函数等方法来创建流。
   
   **参照下图**：
+
 ![chuangjian](http://img.blog.csdn.net/20170730133611647?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzM0Mjk5Njg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ## **2 流的构建方法详解**
 ### **2.1 由值创建流**
