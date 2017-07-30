@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 import javafx.scene.shape.Path;
 
@@ -52,6 +54,21 @@ public class StreamCreate {
         stream2.forEach(System.out::println);
     }
 
+    //由集合创建流
+    public static void createStreamByList() {
+        System.out.println("---createStreamByList---");
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("python");
+        list.add("c++");
+        list.add("c");
+        list.add("lisp");
+
+        Stream<String> listStream = list.stream();
+        System.out.println("---createStreamByList-输出String型的流---");
+        listStream.forEach(System.out::println);
+    }
+
     //由文件创建流
     public static void createStreamByFile() throws IOException {
         System.out.println("---createStreamByFile---");
@@ -64,20 +81,28 @@ public class StreamCreate {
         System.out.println("---数量是: " + wordsNumbers + "---");
     }
 
-    //由函数生成流
-    public static void createStreamByFunction() {
-        System.out.println("---createStreamByFunction---");
+    //由函数生成流--迭代
+    public static void createStreamByFunctionIterate() {
+        System.out.println("---createStreamByFunctionIterate---");
         Stream.iterate(0, n -> n + 2)
                 .limit(10)
                 .forEach(System.out::println);
         //菲波纳契数列
         System.out.println("---createStreamByFunction-菲波纳契数列---");
-        Stream.iterate(new int[]{0,1}, t -> new int[] {t[1],t[0] + t[1]})
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
                 .limit(10)
                 .map(t -> t[0])
                 .forEach(System.out::println);
     }
 
+    //由函数生成流--生成
+    public static void createStreamByFunctionGenerate() {
+        System.out.println("---createStreamByFunctionGenerate---");
+        //随机数
+        Stream.generate(Math::random)
+                .limit(10)
+                .forEach(System.out::println);
+    }
     //测试用main()主方法
     public static void main(String[] args) throws IOException {
         //StreamCreate streamDemo = new StreamCreate();
@@ -85,6 +110,7 @@ public class StreamCreate {
         //StreamCreate.createStreamByValue();
         //StreamCreate.createStreamByArray();
         //StreamCreate.createStreamByFile();
-        StreamCreate.createStreamByFunction();
+        //StreamCreate.createStreamByFunctionIterate();
+        StreamCreate.createStreamByFunctionGenerate();
     }
 }
