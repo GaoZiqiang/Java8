@@ -51,13 +51,15 @@ public class Dish {
     public enum Type {
         MEAT, FISH, OTHER
     }
-    
+
     /**
-     *初始菜单
+     * 初始菜单
      */
     public static final List<Dish> menu = Arrays.asList(
-                new Dish("pork", false, 800, Dish.Type.MEAT),
-                new Dish("beef", false, 700, Dish.Type.MEAT),
-                new Dish("pizza", false, 300, Dish.Type.OTHER)
-        );
+            new Dish("pork", false, 800, Dish.Type.MEAT),
+            new Dish("beef", false, 700, Dish.Type.MEAT),
+            new Dish("pizza", false, 300, Dish.Type.OTHER),
+            new Dish("fish", false, 300, Dish.Type.FISH),
+            new Dish("banana", true, 100, Dish.Type.OTHER)
+    );
 }
