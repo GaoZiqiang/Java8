@@ -11,9 +11,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import static java.util.Comparator.comparing;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.maxBy;
 import static java.util.stream.Collectors.reducing;
@@ -27,13 +29,19 @@ import java.util.stream.Stream;
  */
 public class DishStreamUtil {
 
+    public enum CaloricLevel {
+        DIET, NORMAL, FAT
+    }
+
     public static void main(String[] args) {
-        DishStreamUtil.collectorCounting();
+        //DishStreamUtil.collectorCounting();
         //DishStreamUtil.lowCaloriesDishes();
         //DishStreamUtil.maxCaloriesDishes();
         //DishStreamUtil.shortMenuJoining();
         //DishStreamUtil.sumTotalCalories();
         //DishStreamUtil.collectReduceComparetor();
+        //DishStreamUtil.dishByType();
+        DishStreamUtil.dishByCaloricLevel();
     }
 
     //lowCaloricDishes
@@ -68,9 +76,9 @@ public class DishStreamUtil {
         System.out.println("---mostCaloriesDish.toString()---\r\n" + mostCaloriesDish.toString());
         System.out.println("---mostCaloriesDish's name---\r\n" + mostCaloriesDish.get().getName());
         //方法二
-        Optional<Dish> mostCaloriesDish2 = menu.stream().collect(reducing((d1,d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2));
+        Optional<Dish> mostCaloriesDish2 = menu.stream().collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2));
         System.out.println("---mostCaloriesDish's name---\r\n" + mostCaloriesDish2.get().getName());
-    } 
+    }
 
     //连接字符串
     public static void shortMenuJoining() {
@@ -87,14 +95,37 @@ public class DishStreamUtil {
         int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
         System.out.println("---totalCalories---\r\n" + totalCalories);
         //方法二    
-        int totalCalories2 = menu.stream().collect(reducing(0,Dish::getCalories,(i,j) -> i + j));
+        int totalCalories2 = menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
         System.out.println("---totalCalories2---\r\n" + totalCalories2);
     }
-    
+
     //收集器的collect()与reduce()分析
     public static void collectReduceComparetor() {
-        Stream<Integer> stream = Arrays.asList(1,2,3,4,5,6).stream(); 
+        Stream<Integer> stream = Arrays.asList(1, 2, 3, 4, 5, 6).stream();
         List<Integer> streamList = stream.collect(toList());
         //stream.forEach(System.out::println);
+    }
+
+    //分组--方法引用
+    public static void dishByType() {
+        Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
+        System.out.println("---diesByType---\r\n" + dishesByType.toString());
+    }
+
+    //分组--构造方法，Lambda表达式
+    public static void dishByCaloricLevel() {
+
+        Map<CaloricLevel, List<Dish>> dishesByCaloricLevel = menu.stream().collect(groupingBy(
+                dish -> {
+                    if (dish.getCalories() <= 400) {
+                        return CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return CaloricLevel.NORMAL;
+                    } else {
+                        return CaloricLevel.FAT;
+                    }
+                }
+        ));
+        System.out.println("---dishByCaloricLevel---\r\n" + dishesByCaloricLevel.toString());
     }
 }
