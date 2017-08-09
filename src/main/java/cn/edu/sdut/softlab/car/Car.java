@@ -68,7 +68,7 @@ public class Car {
         this.price = price;
     }
 
-    @Override
+    @Override   
     public String toString() {
         return "Car{" + "name=" + name + ", color=" + color + ", weight=" + weight + ", speed=" + speed + '}';
     }
