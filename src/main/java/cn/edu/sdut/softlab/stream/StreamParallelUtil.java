@@ -22,7 +22,7 @@ public class StreamParallelUtil {
         //meaureParallelSumTest(ParallelSumTest::parallelSumTest,10000000);
         //System.out.println("---运行结果---\r\n");
         System.out.println("---并行流的最快时间---\r\n" + meaureParallelSumTest(ParallelSumTest::parallelSumTest, 10000000) + "msecs");
-        System.out.println("---顺序流的最快时间---\r\n" + meaureParallelSumTest(ParallelSumTest::orderSumTest, 10000000) + "msecs");
+        //System.out.println("---顺序流的最快时间---\r\n" + meaureParallelSumTest(ParallelSumTest::orderSumTest, 10000000) + "msecs");
     }
 
     //传统的顺序流
